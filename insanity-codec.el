@@ -45,6 +45,45 @@
 
 (setq insanity-codec--cipher-alist insanity-codec--default-cipher-alist)
 
+(defconst insanity-codec--magenta-ornithopter-cipher-alist
+  '(("a" . ("frantic bannana"))
+    ("b" . ("Theodore" "theodore"))
+    ("c" . ("torque wrench"))
+    ("d" . ("underscore"))
+    ("e" . ("quality control supervisor"))
+    ("f" . ("quality control"))
+    ("g" . ("don't"))
+    ("h" . ("corn"))
+    ("i" . ("zoot suit"))
+    ("j" . ("Bill and Ted riding the zebra bareback"))
+    ("k" . ("cream cake"))
+    ("l" . ("rumble strip"))
+    ("m" . ("quincunx"))
+    ("n" . ("dormouse"))
+    ("o" . ("corncob"))
+    ("p" . ("riding"))
+    ("q" . ("mouse"))
+    ("r" . ("and"))
+    ("s" . ("country mouse"))
+    ("t" . ("undermine the fortifications"))
+    ("u" . ("town mouse"))
+    ("v" . ("zebra"))
+    ("w" . ("mortification of the flesh"))
+    ("x" . ("modular"))
+    ("y" . ("fortifications"))
+    ("z" . ("Jeremy Corbyn")))
+  "Magenta Ornithopter is a cipher devised especially for the
+  testing of this package.
+
+This cipher should not be used for any sensitive communications
+since it is included in the publically available source code
+distribution.
+
+The Magenta Ornithopter cipher includes various features designed
+ to test potential encoding and decoding problems. In particular,
+ decoding is made more challenging by the fact that some of the
+ single-word codes may also be part of the multi-word codes.")
+
 (defvar insanity-codec-encode-retain-unknown-symbols t
   "If NON-NIL then unknown characters and square-bracket-wrapped
 literal passages will be retained during encoding.

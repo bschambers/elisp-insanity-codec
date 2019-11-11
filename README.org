@@ -8,9 +8,11 @@ which was devised by a boy named Odin, who I know from my part-time day-job
 working in a public library.
 
 The original Insanity Code cipher is not included in this package because it is
-secret. However, for testing purposes I have devised the Magenta Ornithopter
-cipher, which replicates all of the challenges of The Insanity Code and is
-included in insanity-codec-tests.el and is used extensively in the test suite.
+secret. The default cipher simple translates the letters of the alphabet
+[a-zA-Z] to and from their lowercase ascii codes. However, for testing purposes
+I have devised the Magenta Ornithopter cipher, which replicates all of the
+challenges of The Insanity Code. It is included in insanity-codec.el and is made
+use of extensively by the test suite.
 
 It is a simple substitution cipher, but it's special characteristic is that each
 letter of the alphabet is replaced by a whole word, or sometimes a phrase
@@ -19,34 +21,34 @@ consisting of several words.
 Encoding is a simple matter, but decoding is made more difficult by the fact
 that some of the single-word codes may also be part of the multi-word codes. For
 example, in the Magenta Ornithopter cipher: the code for "j" is "Bill and
-Theodore riding the zebra bareback"... this contains "and" (r), "Theodore" (b)
+Ted riding the zebra bareback"... this contains "and" (r), "riding" (p)
 and "zebra" (v)."
 
 * Usage
 ** Basic Usage
 For basic usage, two interactive functions are provided:
 
- (insanity-codec-encode-string TEXT &optional SETTINGS-STRING)
- (insanity-codec-decode-string TEXT &optional SETTINGS-STRING)
+- (insanity-codec-encode-string TEXT &optional SETTINGS-STRING)
+- (insanity-codec-decode-string TEXT &optional SETTINGS-STRING)
 
 Some commented out convenience functions are included at the bottom of
 insanity-codec.el - you may want to eval these to save yourself some typing if
 you want to do a bunch of manual encoding or decoding:
 
- encode      --> calls insanity-codec-encode-string
- decode      --> calls insanity-codec-decode-string
- get-matches --> calls insanity-codec--decode-get-matches
+- encode      --> calls insanity-codec-encode-string
+- decode      --> calls insanity-codec-decode-string
+- get-matches --> calls insanity-codec--decode-get-matches
 
 ** Treatment of Unknown Symbols
 
 The following boolean variables alter the treatment of unknown symbols:
 
- insanity-codec-encode-retain-unknown-symbols
- insanity-codec-encode-wrap-unknown-symbols
- insanity-codec-encode-unwrap-literals
- insanity-codec-decode-retain-unknown-symbols
- insanity-codec-decode-wrap-unknown-symbols
- insanity-codec-decode-unwrap-literals
+- insanity-codec-encode-retain-unknown-symbols
+- insanity-codec-encode-wrap-unknown-symbols
+- insanity-codec-encode-unwrap-literals
+- insanity-codec-decode-retain-unknown-symbols
+- insanity-codec-decode-wrap-unknown-symbols
+- insanity-codec-decode-unwrap-literals
 
 See variable documentation for more details.
 

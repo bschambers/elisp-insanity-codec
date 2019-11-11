@@ -14,45 +14,6 @@
 
 (require 'insanity-codec)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;; VARIABLES ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(defconst insanity-codec--magenta-ornithopter-cipher-alist
-  '(("a" . ("frantic bannana"))
-    ("b" . ("Theodore" "theodore"))
-    ("c" . ("torque wrench"))
-    ("d" . ("underscore"))
-    ("e" . ("quality control supervisor"))
-    ("f" . ("quality control"))
-    ("g" . ("don't"))
-    ("h" . ("corn"))
-    ("i" . ("zoot suit"))
-    ("j" . ("Bill and Theodore riding the zebra bareback"))
-    ("k" . ("cream cake"))
-    ("l" . ("rumble strip"))
-    ("m" . ("quincunx"))
-    ("n" . ("dormouse"))
-    ("o" . ("corncob"))
-    ("p" . ("do"))
-    ("q" . ("mouse"))
-    ("r" . ("and"))
-    ("s" . ("country mouse"))
-    ("t" . ("undermine the fortifications"))
-    ("u" . ("town mouse"))
-    ("v" . ("zebra"))
-    ("w" . ("mortification of the flesh"))
-    ("x" . ("modular"))
-    ("y" . ("fortifications"))
-    ("z" . ("Jeremy Corbyn")))
-  "Magenta Ornithopter is a cipher devised especially for the
-  testing of this package.
-
-This cipher should not be used for any sensitive communications
-since it is included in the publically available source code
-distribution.
-
-The Magenta Ornithopter cipher includes various features designed
- to test potential encoding and decoding problems.")
-
 ;;;;;;;;;;;;;;;;;;;;; GENERAL UTILITY FUNCTIONS ;;;;;;;;;;;;;;;;;;;;;;
 
 (ert-deftest insanity-codec-tests-get-char-at-index-of-string ()
@@ -126,7 +87,7 @@ The Magenta Ornithopter cipher includes various features designed
   (let ((insanity-codec--cipher-alist insanity-codec--magenta-ornithopter-cipher-alist))
     (should (equal "don't" (insanity-codec--encode-char "g")))
     (should (equal "corn" (insanity-codec--encode-char "h")))
-    (should (equal "Bill and Theodore riding the zebra bareback" (insanity-codec--encode-char "j")))
+    (should (equal "Bill and Ted riding the zebra bareback" (insanity-codec--encode-char "j")))
     (should (equal "mortification of the flesh" (insanity-codec--encode-char "w")))
     ;; uppercase work just the same
     (should (equal "don't" (insanity-codec--encode-char "G")))
@@ -353,7 +314,7 @@ The Magenta Ornithopter cipher includes various features designed
         (insanity-codec--cipher-alist insanity-codec--magenta-ornithopter-cipher-alist))
     (should (equal "fishjam"
                    (insanity-codec-decode-string
-                    "quality control zoot suit country mouse corn Bill and Theodore riding the zebra bareback frantic bannana quincunx")))))
+                    "quality control zoot suit country mouse corn Bill and Ted riding the zebra bareback frantic bannana quincunx")))))
 
 (ert-deftest insanity-codec-tests-decode-with-settings-string ()
   (let ((insanity-codec--cipher-alist insanity-codec--magenta-ornithopter-cipher-alist)
