@@ -1,1 +1,116 @@
 * Introduction (elisp-insanity-codec)
+
+The Insanity Codec encodes and decodes text using easily defined substitution
+ciphers.
+
+The name and inspiration come from The Insanity Code, a very silly secret code
+which was devised by a boy named Odin, who I know from my part-time day-job
+working in a public library.
+
+The original Insanity Code cipher is not included in this package because it is
+secret. However, for testing purposes I have devised the Magenta Ornithopter
+cipher, which replicates all of the challenges of The Insanity Code and is
+included in insanity-codec-tests.el and is used extensively in the test suite.
+
+It is a simple substitution cipher, but it's special characteristic is that each
+letter of the alphabet is replaced by a whole word, or sometimes a phrase
+consisting of several words.
+
+Encoding is a simple matter, but decoding is made more difficult by the fact
+that some of the single-word codes may also be part of the multi-word codes. For
+example, in the Magenta Ornithopter cipher: the code for "j" is "Bill and
+Theodore riding the zebra bareback"... this contains "and" (r), "Theodore" (b)
+and "zebra" (v)."
+
+* Usage
+** Basic Usage
+For basic usage, two interactive functions are provided:
+
+ (insanity-codec-encode-string TEXT &optional SETTINGS-STRING)
+ (insanity-codec-decode-string TEXT &optional SETTINGS-STRING)
+
+Some commented out convenience functions are included at the bottom of
+insanity-codec.el - you may want to eval these to save yourself some typing if
+you want to do a bunch of manual encoding or decoding:
+
+ encode      --> calls insanity-codec-encode-string
+ decode      --> calls insanity-codec-decode-string
+ get-matches --> calls insanity-codec--decode-get-matches
+
+** Treatment of Unknown Symbols
+
+The following boolean variables alter the treatment of unknown symbols:
+
+ insanity-codec-encode-retain-unknown-symbols
+ insanity-codec-encode-wrap-unknown-symbols
+ insanity-codec-encode-unwrap-literals
+ insanity-codec-decode-retain-unknown-symbols
+ insanity-codec-decode-wrap-unknown-symbols
+ insanity-codec-decode-unwrap-literals
+
+See variable documentation for more details.
+
+With the out-of-the box settings, all of these are set to TRUE. With these
+settings a string can be encoded and decoded whilst retaining spaces and
+punctuation symbols. During encoding unknown symbols (e.g. space or full-stop)
+are retained and wrapped in square brackets. Because these symbols are enclosed
+in square brackets, they are treated as literals by the decoding function and
+are retained and unwrapped, thus returning the text to exactly the same state as
+before encoding.
+
+** Settings Strings
+
+The interactive encoding and decoding functions both accept an optional
+settings-string which, if given, temporarily overrides the current global
+settings for treatment of unknown symbols.
+
+The settings-string encodes up to six boolean values, which if present,
+temporarily override the values of the variables detailed above (in the same
+order that they are listed).
+
+If there are less than six values then the later variables are left unaltered.
+
+Any additional values after the first six are ignored.
+
+The values of the settings-string are found by examining the string one
+character at a time. 'T' or 't' count as true. 'N' or 'n' count as false
+(nil). All other characters are ignored.
+
+This behaviour means that the settings can be embedded in a longer string if
+desired - here are some examples to demonstrate:
+
+
+
+These three are all equivalent...
+
+#+BEGIN_EXAMPLE
+"ttnttt"
+
+"the tiny tortured artificer"
+
+"Troglodytes frantically sacked the great Tree Fort of Weston-super-Mare!"
+#+END_EXAMPLE
+
+Square brackets show the positions of the six values in the last example...
+
+#+BEGIN_EXAMPLE
+"[T]roglody[t]es fra[n][t]ically sacked [t]he grea[t] Tree Fort of Weston-super-Mare!"
+#+END_EXAMPLE
+
+
+
+These three are also all equivalent...
+
+#+BEGIN_EXAMPLE
+"nnnnnn"
+
+"unknown bananna"
+
+"Beginning under John's sub-basement, the fissure extends deep into the centre of the earth."
+#+END_EXAMPLE
+
+Square brackets show the positions of the six values in the last example...
+
+#+BEGIN_EXAMPLE
+"Begi[n][n]i[n]g u[n]der Joh[n]'s sub-baseme[n]t, the fissure extends deep into the centre of the earth."
+#+END_EXAMPLE
