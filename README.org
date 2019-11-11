@@ -31,6 +31,13 @@ For basic usage, two interactive functions are provided:
 - (insanity-codec-encode-string TEXT &optional SETTINGS-STRING)
 - (insanity-codec-decode-string TEXT &optional SETTINGS-STRING)
 
+To change the cipher used, simply set the variable insanity-codec--cipher-alist
+e.g:
+
+#+BEGIN_SRC elisp
+(setf insanity-codec--cipher-alist insanity-codec--magenta-ornithopter-cipher-alist)
+#+END_SRC
+
 Some commented out convenience functions are included at the bottom of
 insanity-codec.el - you may want to eval these to save yourself some typing if
 you want to do a bunch of manual encoding or decoding:
