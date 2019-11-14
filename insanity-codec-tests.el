@@ -1,4 +1,4 @@
-;;; insanity-codec-tests.el --- Unit tests for insanity-codec.el
+;; insanity-codec-tests.el --- Unit tests for the Insanity Codec
 
 ;; To run tests, eval this file then M-x ert
 ;;
