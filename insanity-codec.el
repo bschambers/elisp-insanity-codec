@@ -6,6 +6,8 @@
 ;;
 ;; Tested with: Emacs 25.3.2
 
+(require 'cl)
+
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; GLOBAL VARIABLES ;;;;;;;;;;;;;;;;;;;;;;;;;;
