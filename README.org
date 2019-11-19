@@ -4,15 +4,14 @@ The Insanity Codec encodes and decodes text using easily defined substitution
 ciphers.
 
 The name and inspiration come from The Insanity Code, a very silly secret code
-which was devised by a boy named Odin, who I know from my part-time day-job
+which was devised by a boy named Odin who I know from my part-time day-job
 working in a public library.
 
 The original Insanity Code cipher is not included in this package because it is
-secret. The default cipher simple translates the letters of the alphabet
+secret. The default cipher simply translates the letters of the alphabet
 [a-zA-Z] to and from their lowercase ascii codes. However, for testing purposes
 I have devised the Magenta Ornithopter cipher, which replicates all of the
-challenges of The Insanity Code. It is included in insanity-codec.el and is made
-use of extensively by the test suite.
+challenges of the original Insanity Code and is included in this package.
 
 It is a simple substitution cipher, but it's special characteristic is that each
 letter of the alphabet is replaced by a whole word, or sometimes a phrase
@@ -20,9 +19,9 @@ consisting of several words.
 
 Encoding is a simple matter, but decoding is made more difficult by the fact
 that some of the single-word codes may also be part of the multi-word codes. For
-example, in the Magenta Ornithopter cipher: the code for "j" is "Bill and
-Ted riding the zebra bareback"... this contains "and" (r), "riding" (p)
-and "zebra" (v)."
+example, in the Magenta Ornithopter cipher: the code for "j" is "Bill and Ted
+riding the zebra bareback"... this contains "and" (r), "riding" (p) and "zebra"
+(v)."
 
 * Usage
 ** Basic Usage
@@ -70,16 +69,15 @@ before encoding.
 ** Settings Strings
 
 The interactive encoding and decoding functions both accept an optional
-settings-string which, if given, temporarily overrides the current global
+settings-string which if given, temporarily overrides the current global
 settings for treatment of unknown symbols.
 
 The settings-string encodes up to six boolean values, which if present,
 temporarily override the values of the variables detailed above (in the same
 order that they are listed).
 
-If there are less than six values then the later variables are left unaltered.
-
-Any additional values after the first six are ignored.
+If there are less than six values then the later variables are left unaltered
+and any additional values after the first six are ignored.
 
 The values of the settings-string are found by examining the string one
 character at a time. 'T' or 't' count as true. 'N' or 'n' count as false
